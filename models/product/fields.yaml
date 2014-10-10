@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: left
+        placeholder: New product name
+        required: true
+    slug:
+        label: Slug
+        span: right
+        required: true
+        attributes:
+            data-input-preset: 'input[name="Product[title]"]'
+            data-input-preset-type: slug
+            data-input-preset-closest-parent: form
+
+tabs:
+    fields:
+        category_id:
+            label: Category
+            span: left
+            type: dropdown
+            tab: Details
+        price:
+            label: Price
+            span: right
+            type: number
+            tab: Details
+        description:
+            label: Description
+            type: Backend\FormWidgets\RichEditor
+            tab: Details

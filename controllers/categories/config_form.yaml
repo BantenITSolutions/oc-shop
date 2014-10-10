@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/dshoreman/shop/models/category/fields.yaml
+
+# Model Class name
+modelClass: DShoreman\Shop\Models\Category
+
+# Default redirect location
+defaultRedirect: dshoreman/shop/categories
+
+# Create page
+create:
+    title: Create Category
+    redirect: dshoreman/shop/categories/update/:id
+    redirectClose: dshoreman/shop/categories
+
+# Update page
+update:
+    title: Edit Category
+    redirect: dshoreman/shop/categories
+    redirectClose: dshoreman/shop/categories
+
+# Preview page
+preview:
+    title: Preview Category
