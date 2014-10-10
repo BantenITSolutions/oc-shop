@@ -6,6 +6,13 @@ fields:
     title:
         label: Title
         required: true
+    slug:
+        label: Slug
+        required: true
+        attributes:
+            data-input-preset: 'input[name="Category[title]"]'
+            data-input-preset-type: 'slug'
+            data-input-preset-closest-parent: 'form'
     description:
         label: Description
         type: textarea

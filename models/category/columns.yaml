@@ -9,6 +9,10 @@ columns:
     title:
         label: Title
         searchable: true
+    slug:
+        label: Slug
+        searchable: false
     description:
         label: Description
         searchable: false
+        invisible: true
