@@ -24,6 +24,13 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerComponents()
+    {
+        return [
+            'DShoreman\Shop\Components\Products' => 'shopProducts',
+        ];
+    }
+
     public function registerNavigation()
     {
         return [

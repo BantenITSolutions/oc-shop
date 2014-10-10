@@ -1,0 +1,21 @@
+<div class="col-sm-6 col-md-3"> 
+    <div class="thumbnail">
+        <img class="img-rounded" alt="{{ product.title }}" src="http://placehold.it/250/250" />
+
+        <div class="caption">
+            <a href="{{ product.slug }}">
+                <h4 title="{{ product.title }}">{{ product.title }}</h4>
+            </a>
+            <div class="row">
+                <div class="col-xs-4">
+                    <h5 class="price">&pound;{{ product.price }}</h5>
+                </div>
+                <div class="col-xs-8">
+                    <button type="submit" class="btn btn-sm btn-primary pull-right">
+                        Add to Basket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
