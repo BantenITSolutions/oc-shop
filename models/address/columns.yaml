@@ -1,0 +1,29 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+        searchable: true
+    street:
+        label: Street
+        searchable: true
+        invisible: true
+    town:
+        label: Town
+        searchable: true
+    county:
+        label: County
+        searchable: true
+        invisible: true
+    postcode:
+        label: Post Code
+        searchable: true
+    country:
+        label: Country
+        searchable: true
+        invisible: true

@@ -1,0 +1,20 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    name:
+        label: Name
+    street:
+        label: Street
+    town:
+        label: Town
+    county:
+        label: County
+    postcode:
+        label: Post Code
+    country:
+        label: Country

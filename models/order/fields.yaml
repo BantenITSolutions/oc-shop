@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    email:
+        label: Email Address
+        required: true
+    status:
+        label: Order Status
+        type: dropdown
+        options:
+            new: New
+            abort: Cancelled
+            paid: Paid
+            sent: Dispatched
+            rma: Return requested
+            refund: Refunded
+    billingAddress:
+        label: Billing Address
+        type: textarea
+        span: left
+    shippingAddress:
+        label: Shipping Address
+        type: textarea
+        span: right
+    items:
+        label: Ordered Items
+        disabled: true
+    total:
+        label: Order Total
