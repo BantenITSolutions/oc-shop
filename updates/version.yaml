@@ -2,6 +2,5 @@
     - First version of Shop
     - create_categories_table.php
     - create_products_table.php
-    - create_addresses_table.php
     - create_orders_table.php
     - demo_seed.php

@@ -13,16 +13,21 @@ class CreateOrdersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('email');
-            $table->string('stripe_token');
-            $table->integer('billing_address')->unsigned();
-            $table->integer('shipping_address')->unsigned();
             $table->text('items');
             $table->decimal('total', 7, 2);
             $table->boolean('is_paid')->default(false);
+            $table->string('stripe_token');
+            $table->string('billing_name');
+            $table->string('billing_street');
+            $table->string('billing_town');
+            $table->string('billing_county');
+            $table->string('billing_postcode');
+            $table->string('shipping_name');
+            $table->string('shipping_street');
+            $table->string('shipping_town');
+            $table->string('shipping_county');
+            $table->string('shipping_postcode');
             $table->timestamps();
-
-            $table->foreign('billing_address')->references('id')->on('dshoreman_shop_addresses');
-            $table->foreign('shipping_address')->references('id')->on('dshoreman_shop_addresses');
         });
     }
 
