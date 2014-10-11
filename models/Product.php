@@ -42,4 +42,15 @@ class Product extends Model
     {
         return Category::lists('title', 'id');
     }
+
+    public function setUrl($pageName, $controller)
+    {
+        $params = [
+            'id' => $this->id,
+            'slug' => $this->slug,
+        ];
+
+        return $this->url = $controller->pageUrl($pageName, $params);
+    }
+
 }
