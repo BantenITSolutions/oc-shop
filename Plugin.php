@@ -27,6 +27,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            'DShoreman\Shop\Components\Product' => 'shopProduct',
             'DShoreman\Shop\Components\Products' => 'shopProducts',
         ];
     }
