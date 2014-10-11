@@ -1,13 +1,25 @@
 <?php namespace DShoreman\Shop;
 
+use App;
 use Backend;
 use System\Classes\PluginBase;
+use Illuminate\Foundation\AliasLoader;
 
 /**
  * Shop Plugin Information File
  */
 class Plugin extends PluginBase
 {
+
+    public function boot()
+    {
+        // Register service providers
+        App::register('\Gloudemans\Shoppingcart\ShoppingcartServiceProvider');
+
+        // Register facades
+        $facade = AliasLoader::getInstance();
+        $facade->alias('Cart', '\Gloudemans\Shoppingcart\Facades\Cart');
+    }
 
     /**
      * Returns information about this plugin.
@@ -27,6 +39,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            'DShoreman\Shop\Components\Basket' => 'shopBasket',
             'DShoreman\Shop\Components\Categories' => 'shopCategories',
             'DShoreman\Shop\Components\Product' => 'shopProduct',
             'DShoreman\Shop\Components\Products' => 'shopProducts',

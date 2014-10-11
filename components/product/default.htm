@@ -8,7 +8,11 @@
         
         {{ product.description|raw }}
 
-        <form>
+        <form
+            data-request="shopBasket::onAddProduct"
+            data-request-update="'shopBasket::default' : '#basket'"
+            data-request-data="id: {{ product.id }}"
+        >
             <div class="row">
                 <div class="col-md-3">
                     <p class="text-primary lead">
@@ -18,15 +22,9 @@
                 <div class="col-md-4">
                     <label class="sr-only" for="qty">Quantity</label>
                     <div class="input-group product-qty">
-                        <input type="text" class="form-control" id="qty" name="qty" placeholder="Qty">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-danger qtymod" data-direction="dn">
-                                <i class="icon icon-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning qtymod" data-direction="up">
-                                <i class="icon icon-plus"></i>
-                            </button>
-                        </div>
+                        <input type="number" class="form-control"
+                            name="quantity" placeholder="Qty"
+                        >
                     </div>
                 </div>
             </div>

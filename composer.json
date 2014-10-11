@@ -1,0 +1,16 @@
+{
+    "name": "dshoreman/shop",
+    "description": "",
+    "homepage": "http://dsdev.io/",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "Dave Shoreman",
+            "email": "code@dsdev.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "gloudemans/shoppingcart": "~1.2"
+    }
+}

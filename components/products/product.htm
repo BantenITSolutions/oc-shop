@@ -11,7 +11,11 @@
                     <h5 class="price">&pound;{{ product.price }}</h5>
                 </div>
                 <div class="col-xs-8">
-                    <button type="submit" class="btn btn-sm btn-primary pull-right">
+                    <button type="submit" class="btn btn-sm btn-primary pull-right"
+                        data-request="shopBasket::onAddProduct"
+                        data-request-update="'shopBasket::default' : '#basket'"
+                        data-request-data="id: {{ product.id }}, quantity: 1"
+                    >
                         Add to Basket
                     </button>
                 </div>
