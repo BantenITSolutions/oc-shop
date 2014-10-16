@@ -19,16 +19,59 @@ fields:
             sent: Dispatched
             rma: Return requested
             refund: Refunded
-    billingAddress:
-        label: Billing Address
-        type: textarea
-        span: left
-    shippingAddress:
-        label: Shipping Address
-        type: textarea
-        span: right
     items:
         label: Ordered Items
         disabled: true
     total:
         label: Order Total
+
+tabs:
+    fields:
+        billingName:
+            label: Payment Name
+            span: right
+            tab: Addresses
+        shippingName:
+            label: Postage Name
+            span: left
+            tab: Addresses
+        billingStreet:
+            label: Payment Address
+            span: right
+            tab: Addresses
+        shippingStreet:
+            label: Postage Address
+            span: left
+            tab: Addresses
+        billingTown:
+            label: Payment Town
+            span: right
+            tab: Addresses
+        shippingTown:
+            label: Postage Town
+            span: left
+            tab: Addresses
+        billingCounty:
+            label: Payment County
+            span: right
+            tab: Addresses
+        shippingCounty:
+            label: Postage County
+            span: left
+            tab: Addresses
+        billingPostcode:
+            label: Payment Post Code
+            span: right
+            tab: Addresses
+        shippingPostcode:
+            label: Postage Post Code
+            span: left
+            tab: Addresses
+        billingCountry:
+            label: Payment Country
+            span: right
+            tab: Addresses
+        shippingCountry:
+            label: Postage Country
+            span: left
+            tab: Addresses

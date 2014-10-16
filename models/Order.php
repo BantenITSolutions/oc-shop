@@ -26,10 +26,7 @@ class Order extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [
-        'billingAddress' => ['DShoreman\Shop\Models\Address'],
-        'shippingAddress' => ['DShoreman\Shop\Models\Address'],
-    ];
+    public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [];
