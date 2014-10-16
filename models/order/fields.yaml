@@ -4,14 +4,19 @@
 
 fields:
     id:
-        label: ID
+        label: Order ID
+        span: left
         disabled: true
-    email:
-        label: Email Address
-        required: true
+    createdAt:
+        label: Date placed
+        span: right
+    updatedAt:
+        label: Date updated
+        span: right
     status:
-        label: Order Status
+        label: Current Status
         type: dropdown
+        span: left
         options:
             new: New
             abort: Cancelled
@@ -19,11 +24,9 @@ fields:
             sent: Dispatched
             rma: Return requested
             refund: Refunded
-    items:
-        label: Ordered Items
-        disabled: true
-    total:
-        label: Order Total
+    email:
+        label: Email Address
+        required: true
 
 tabs:
     fields:
@@ -75,3 +78,12 @@ tabs:
             label: Postage Country
             span: left
             tab: Addresses
+
+        items:
+            label: Order Items
+            tab: Items
+        total:
+            label: Order Value
+            span: right
+            tab: Items
+            disabled: true
