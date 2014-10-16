@@ -9,8 +9,32 @@ columns:
     email:
         label: Email Address
         searchable: true
+    shipping_name:
+        label: Name
+        searchable: true
+    shipping_street:
+        label: Street
+        searchable: true
+        invisible: true
+    shipping_town:
+        label: Town
+        searchable: true
+    shipping_county:
+        label: County
+        searchable: true
+        invisible: true
+    shipping_postcode:
+        label: Post Code
+        searchable: true
+        invisible: true
+    shipping_country:
+        label: Country
+        searchable: true
     total:
         label: Order Value
+    is_paid:
+        label: Status
+        searchable: true
     created_at:
         label: Date Placed
         searchable: true
