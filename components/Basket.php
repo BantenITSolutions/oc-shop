@@ -1,8 +1,11 @@
 <?php namespace DShoreman\Shop\Components;
 
 use Cart;
+use Redirect;
+use Session;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use DShoreman\Shop\Models\Order as ShopOrder;
 use DShoreman\Shop\Models\Product as ShopProduct;
 
 class Basket extends ComponentBase
@@ -41,6 +44,10 @@ class Basket extends ComponentBase
         $this->basketItems = $this->page['basketItems'] = Cart::content();
         $this->basketCount = $this->page['basketCount'] = Cart::count();
         $this->basketTotal = $this->page['basketTotal'] = Cart::total();
+
+        if (Session::has('orderId')) {
+            $this->orderId = $this->page['orderId'] = Session::get('orderId');
+        }
     }
 
     public function onAddProduct()
@@ -57,4 +64,15 @@ class Basket extends ComponentBase
         $this->page['basketTotal'] = Cart::total();
     }
 
+    public function onCheckout()
+    {
+        $order = new ShopOrder;
+        $order->items = json_encode(Cart::content()->toArray());
+        $order->total = Cart::total();
+        $order->save();
+
+        Session::put('orderId', $order->id);
+
+        return Redirect::to('shop/checkout/payment');
+    }
 }

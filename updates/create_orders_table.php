@@ -22,11 +22,13 @@ class CreateOrdersTable extends Migration
             $table->string('billing_town');
             $table->string('billing_county');
             $table->string('billing_postcode');
+            $table->string('billing_country');
             $table->string('shipping_name');
             $table->string('shipping_street');
             $table->string('shipping_town');
             $table->string('shipping_county');
             $table->string('shipping_postcode');
+            $table->string('shipping_country');
             $table->timestamps();
         });
     }
