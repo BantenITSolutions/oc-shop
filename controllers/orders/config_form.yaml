@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Order
+
+# Model Form Field configuration
+form: $/dshoreman/shop/models/order/fields.yaml
+
+# Model Class name
+modelClass: DShoreman\Shop\Models\Order
+
+# Default redirect location
+defaultRedirect: dshoreman/shop/orders
+
+# Create page
+create:
+    title: Create Order
+    redirect: dshoreman/shop/orders/update/:id
+    redirectClose: dshoreman/shop/orders
+
+# Update page
+update:
+    title: Edit Order
+    redirect: dshoreman/shop/orders
+    redirectClose: dshoreman/shop/orders
+
+# Preview page
+preview:
+    title: Preview Order

@@ -69,7 +69,23 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-list-ul',
                         'permissions' => ['dshoreman.shop.access_categories'],
                     ],
+                    'orders' => [
+                        'label'       => 'Orders',
+                        'url'         => Backend::url('dshoreman/shop/orders'),
+                        'icon'        => 'icon-gbp',
+                        'permissions' => ['dshoreman.shop.access_orders'],
+                    ],
                 ],
+            ],
+        ];
+    }
+
+    public function registerFormWidgets()
+    {
+        return [
+            'Dshoreman\Shop\FormWidgets\ItemGrid' => [
+                'label' => 'Order Item Grid',
+                'alias' => 'itemgrid',
             ],
         ];
     }
@@ -79,6 +95,7 @@ class Plugin extends PluginBase
         return [
             'dshoreman.shop.access_products'   => ['label' => "Manage the shop's products"],
             'dshoreman.shop.access_categories' => ['label' => "Manage the shop categories"],
+            'dshoreman.shop.access_orders' => ['label' => "Manage the shop orders"],
         ];
     }
 
