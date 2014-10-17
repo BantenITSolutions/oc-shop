@@ -32,61 +32,50 @@ fields:
 
 tabs:
     fields:
-        billingName:
-            label: Payment Name
-            span: right
-            tab: Addresses
-        shippingName:
-            label: Postage Name
-            span: left
-            tab: Addresses
-        billingStreet:
-            label: Payment Address
-            span: right
-            tab: Addresses
-        shippingStreet:
-            label: Postage Address
-            span: left
-            tab: Addresses
-        billingTown:
-            label: Payment Town
-            span: right
-            tab: Addresses
-        shippingTown:
-            label: Postage Town
-            span: left
-            tab: Addresses
-        billingCounty:
-            label: Payment County
-            span: right
-            tab: Addresses
-        shippingCounty:
-            label: Postage County
-            span: left
-            tab: Addresses
-        billingPostcode:
-            label: Payment Post Code
-            span: right
-            tab: Addresses
-        shippingPostcode:
-            label: Postage Post Code
-            span: left
-            tab: Addresses
-        billingCountry:
-            label: Payment Country
-            span: right
-            tab: Addresses
-        shippingCountry:
-            label: Postage Country
-            span: left
-            tab: Addresses
-
         items:
             label:
-            tab: Items
+            tab: Products
             type: itemgrid
         total:
             label: Order Value
             span: right
-            tab: Items
+            tab: Products
             disabled: true
+
+        billingName:
+            label: Name
+            tab: Payment Address
+        billingStreet:
+            label: Address
+            tab: Payment Address
+        billingTown:
+            label: Town
+            tab: Payment Address
+        billingCounty:
+            label: County
+            tab: Payment Address
+        billingPostcode:
+            label: Post Code
+            tab: Payment Address
+        billingCountry:
+            label: Country
+            tab: Payment Address
+
+        shippingName:
+            label: Name
+            tab: Postage Address
+        shippingStreet:
+            label: Address
+            tab: Postage Address
+        shippingTown:
+            label: Town
+            tab: Postage Address
+        shippingCounty:
+            label: County
+            tab: Postage Address
+        shippingPostcode:
+            label: Post Code
+            tab: Postage Address
+        shippingCountry:
+            label: Country
+            tab: Postage Address
