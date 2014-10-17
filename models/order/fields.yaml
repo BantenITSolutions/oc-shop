@@ -7,12 +7,14 @@ fields:
         label: Order ID
         span: left
         disabled: true
-    createdAt:
+    created_at:
         label: Date placed
         span: right
-    updatedAt:
+        disabled: true
+    updated_at:
         label: Date updated
         span: right
+        disabled: true
     status:
         label: Current Status
         type: dropdown
