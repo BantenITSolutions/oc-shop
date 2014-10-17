@@ -3,32 +3,6 @@
 # ===================================
 
 fields:
-    id:
-        label: Order ID
-        span: left
-        disabled: true
-    created_at:
-        label: Date placed
-        span: right
-        disabled: true
-    updated_at:
-        label: Date updated
-        span: right
-        disabled: true
-    status:
-        label: Current Status
-        type: dropdown
-        span: left
-        options:
-            new: New
-            abort: Cancelled
-            paid: Paid
-            sent: Dispatched
-            rma: Return requested
-            refund: Refunded
-    email:
-        label: Email Address
-        required: true
 
 tabs:
     fields:
@@ -36,11 +10,6 @@ tabs:
             label:
             tab: Products
             type: itemgrid
-        total:
-            label: Order Value
-            span: right
-            tab: Products
-            disabled: true
 
         billingName:
             label: Name
