@@ -82,8 +82,9 @@ tabs:
             tab: Addresses
 
         items:
-            label: Order Items
+            label:
             tab: Items
+            type: itemgrid
         total:
             label: Order Value
             span: right

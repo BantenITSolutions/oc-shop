@@ -80,6 +80,16 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerFormWidgets()
+    {
+        return [
+            'Dshoreman\Shop\FormWidgets\ItemGrid' => [
+                'label' => 'Order Item Grid',
+                'alias' => 'itemgrid',
+            ],
+        ];
+    }
+
     public function registerPermissions()
     {
         return [
