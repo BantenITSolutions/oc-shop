@@ -11,40 +11,40 @@ tabs:
             tab: Products
             type: itemgrid
 
-        billingName:
+        billing_name:
             label: Name
             tab: Payment Address
-        billingStreet:
+        billing_street:
             label: Address
             tab: Payment Address
-        billingTown:
+        billing_town:
             label: Town
             tab: Payment Address
-        billingCounty:
+        billing_county:
             label: County
             tab: Payment Address
-        billingPostcode:
+        billing_postcode:
             label: Post Code
             tab: Payment Address
-        billingCountry:
+        billing_country:
             label: Country
             tab: Payment Address
 
-        shippingName:
+        shipping_name:
             label: Name
             tab: Postage Address
-        shippingStreet:
+        shipping_street:
             label: Address
             tab: Postage Address
-        shippingTown:
+        shipping_town:
             label: Town
             tab: Postage Address
-        shippingCounty:
+        shipping_county:
             label: County
             tab: Postage Address
-        shippingPostcode:
+        shipping_postcode:
             label: Post Code
             tab: Postage Address
-        shippingCountry:
+        shipping_country:
             label: Country
             tab: Postage Address
