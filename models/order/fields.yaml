@@ -1,0 +1,81 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: Order ID
+        span: left
+        disabled: true
+    created_at:
+        label: Date placed
+        span: right
+        disabled: true
+    updated_at:
+        label: Date updated
+        span: right
+        disabled: true
+    status:
+        label: Current Status
+        type: dropdown
+        span: left
+        options:
+            new: New
+            abort: Cancelled
+            paid: Paid
+            sent: Dispatched
+            rma: Return requested
+            refund: Refunded
+    email:
+        label: Email Address
+        required: true
+
+tabs:
+    fields:
+        items:
+            label:
+            tab: Products
+            type: itemgrid
+        total:
+            label: Order Value
+            span: right
+            tab: Products
+            disabled: true
+
+        billingName:
+            label: Name
+            tab: Payment Address
+        billingStreet:
+            label: Address
+            tab: Payment Address
+        billingTown:
+            label: Town
+            tab: Payment Address
+        billingCounty:
+            label: County
+            tab: Payment Address
+        billingPostcode:
+            label: Post Code
+            tab: Payment Address
+        billingCountry:
+            label: Country
+            tab: Payment Address
+
+        shippingName:
+            label: Name
+            tab: Postage Address
+        shippingStreet:
+            label: Address
+            tab: Postage Address
+        shippingTown:
+            label: Town
+            tab: Postage Address
+        shippingCounty:
+            label: County
+            tab: Postage Address
+        shippingPostcode:
+            label: Post Code
+            tab: Postage Address
+        shippingCountry:
+            label: Country
+            tab: Postage Address

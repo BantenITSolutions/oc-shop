@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "gloudemans/shoppingcart": "~1.2"
+        "gloudemans/shoppingcart": "~1.2",
+        "stripe/stripe-php": "dev-master"
     }
 }
