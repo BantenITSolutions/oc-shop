@@ -1,6 +1,6 @@
-<ul>
+<ul class="{{ listClass }}">
     {% for category in categories %}
-        <li>
+        <li class="{{ listItemClass }}">
             <a href="{{ category.url }}">{{ category.title }}</a>
         </li>
     {% endfor %}

@@ -25,6 +25,18 @@ class Categories extends ComponentBase
                 'default'     => 'shop/category',
                 'group'       => 'Links',
             ],
+            'listClass' => [
+                'title'       => 'List class',
+                'description' => 'The classes to apply to the <ul> element in the default partial.',
+                'default'     => '',
+                'group'       => 'Styles',
+            ],
+            'listItemClass' => [
+                'title'       => 'List item class',
+                'description' => 'The classes to apply to child <li> elements in the default partial.',
+                'default'     => '',
+                'group'       => 'Styles',
+            ],
         ];
     }
 
@@ -35,9 +47,16 @@ class Categories extends ComponentBase
 
     public function onRun()
     {
-        $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+        $this->prepareVars();
 
         $this->categories = $this->page['categories'] = $this->listCategories();
+    }
+
+    public function prepareVars()
+    {
+        $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+        $this->listClass = $this->page['listClass'] = $this->property('listClass');
+        $this->listItemClass = $this->page['listItemClass'] = $this->property('listItemClass');
     }
 
     public function listCategories()
