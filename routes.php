@@ -1,6 +1,7 @@
 <?php
 
 use DShoreman\Shop\Models\Order as ShopOrder;
+use DShoreman\Shop\Models\Settings;
 
 Route::group(['prefix' => 'shop'], function()
 {
@@ -32,7 +33,9 @@ Route::group(['prefix' => 'shop'], function()
         $order->shipping_postcode = post('stripeShippingAddressZip');
         $order->shipping_country = post('stripeShippingAddressCountry');
 
-        Stripe::setApiKey('sk_test_NHbBmLzRSL7G06gpyLVraQ2Z');
+        Settings::get('stripe_active_keys') == 'live'
+                 ? Stripe::setApiKey(Settings::get('stripe_live_sec_key'))
+                 : Stripe::setApiKey(Settings::get('stripe_test_sec_key'));
 
         try {
             $charge = Stripe_Charge::create([
