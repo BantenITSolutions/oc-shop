@@ -23,6 +23,12 @@ class Basket extends ComponentBase
     public function defineProperties()
     {
         return [
+            'paymentPage' => [
+                'title'       => 'Checkout Page',
+                'description' => 'Name of the page to redirect to when a user clicks Proceed to Checkout.',
+                'default'     => 'checkout/payment',
+                'group'       => 'Links',
+            ],
             'productPage' => [
                 'title'       => 'Product Page',
                 'description' => 'Name of the product page for the product titles. This property is used by the default component partial.',
@@ -40,6 +46,12 @@ class Basket extends ComponentBase
 
     public function onRun()
     {
+        $this->prepareVars();
+    }
+
+    public function prepareVars()
+    {
+        $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
         $this->productPage = $this->page['productPage'] = $this->property('productPage');
 
         $this->basketItems = $this->page['basketItems'] = Cart::content();
@@ -67,6 +79,8 @@ class Basket extends ComponentBase
 
     public function onCheckout()
     {
+        $this->prepareVars();
+
         $this->stripMissingItems();
 
         if ($this->items_removed > 0) {
@@ -90,7 +104,7 @@ class Basket extends ComponentBase
 
         Session::put('orderId', $order->id);
 
-        return Redirect::to('shop/checkout/payment');
+        return Redirect::to($this->paymentPage);
     }
 
     protected function stripMissingItems()
