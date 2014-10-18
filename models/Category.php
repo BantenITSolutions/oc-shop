@@ -27,7 +27,9 @@ class Category extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'products' => ['Dshoreman\Shop\Models\Product'],
+    ];
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];

@@ -25,6 +25,17 @@ class Categories extends ComponentBase
                 'default'     => 'shop/category',
                 'group'       => 'Links',
             ],
+            'showItemCount' => [
+                'title'       => 'Show Item Count',
+                'description' => 'Whether or not to add the number of child products next to category titles when generating the menu.',
+                'type'        => 'checkbox',
+                'default'     => '',
+            ],
+            'itemCountClass' => [
+                'title'       => 'Item Count class',
+                'description' => 'The classes to apply to the optional product count, shown next to the category titles in menus.',
+                'group'       => 'Styles',
+            ],
             'listClass' => [
                 'title'       => 'List class',
                 'description' => 'The classes to apply to the <ul> element in the default partial.',
@@ -55,6 +66,8 @@ class Categories extends ComponentBase
     public function prepareVars()
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+        $this->showItemCount = $this->page['showItemCount'] = $this->property('showItemCount');
+        $this->itemCountClass = $this->page['itemCountClass'] = $this->property('itemCountClass');
         $this->listClass = $this->page['listClass'] = $this->property('listClass');
         $this->listItemClass = $this->page['listItemClass'] = $this->property('listItemClass');
     }

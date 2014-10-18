@@ -1,7 +1,14 @@
 <ul class="{{ listClass }}">
     {% for category in categories %}
         <li class="{{ listItemClass }}">
-            <a href="{{ category.url }}">{{ category.title }}</a>
+            <a href="{{ category.url }}">
+                {{ category.title }}
+                {% if showItemCount %}
+                <span class="{{ itemCountClass }}">
+                    {{ category.products.count }}
+                </span>
+                {% endif %}
+            </a>
         </li>
     {% endfor %}
 </ul>
