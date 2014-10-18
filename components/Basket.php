@@ -53,7 +53,7 @@ class Basket extends ComponentBase
     public function onAddProduct()
     {
         $id = post('id');
-        $quantity = post('quantity');
+        $quantity = post('quantity') ?: 1;
 
         $product = ShopProduct::find($id);
 
