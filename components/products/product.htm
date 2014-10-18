@@ -1,24 +1,24 @@
-<div class="col-sm-6 col-md-3"> 
-    <div class="thumbnail">
-        <img class="img-rounded" alt="{{ product.title }}" src="http://placehold.it/250/250" />
+<div class="{{ productContainerClass }}">
+    <img class="{{ imageClass }}" alt="{{ product.title }}" src="http://placehold.it/250/250" />
 
-        <div class="caption">
-            <a href="{{ product.url }}">
-                <h4 title="{{ product.title }}">{{ product.title }}</h4>
-            </a>
-            <div class="row">
-                <div class="col-xs-4">
-                    <h5 class="price">&pound;{{ product.price }}</h5>
-                </div>
-                <div class="col-xs-8">
-                    <button type="submit" class="btn btn-sm btn-primary pull-right"
-                        data-request="shopBasket::onAddProduct"
-                        data-request-update="'shopBasket::default' : '#basket'"
-                        data-request-data="id: {{ product.id }}, quantity: 1"
-                    >
-                        Add to Basket
-                    </button>
-                </div>
+    <div class="{{ detailContainerClass }}">
+        <a href="{{ product.url }}">
+            <h4 title="{{ product.title }}">{{ product.title }}</h4>
+        </a>
+        <div class="{{ rowClass }}">
+            <div class="{{ priceContainerClass }}">
+                <h5 class="{{ priceClass }}">&pound;{{ product.price }}</h5>
+            </div>
+            <div class="{{ addButtonContainerClass }}">
+                <button type="submit" class="{{ addButtonClass }}"
+                    data-request="shopBasket::onAddProduct"
+                    {% if basketContainer %}
+                    data-request-update="'shopBasket::default' : '{{ basketContainer }}'"
+                    {% endif %}
+                    data-request-data="id: {{ product.id }}, quantity: 1"
+                >
+                    {{ addButtonText }}
+                </button>
             </div>
         </div>
     </div>

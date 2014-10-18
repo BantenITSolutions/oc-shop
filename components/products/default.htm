@@ -1,8 +1,7 @@
-<h1>{{ category.title }}</h1>
-<p class="lead">{{ category.description }}</p>
-
-<div class="row">
+<div class="{{ rowClass }}">
     {% for product in products %}
-        {% partial 'shopProducts::product' product=product %}
+        <div class="{{ productColumnClass }}">
+            {% partial 'shopProducts::product' product=product %}
+        </div>
     {% endfor %}
 </div>
