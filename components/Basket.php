@@ -1,6 +1,7 @@
 <?php namespace DShoreman\Shop\Components;
 
 use Cart;
+use Flash;
 use Redirect;
 use Session;
 use Cms\Classes\Page;
@@ -66,6 +67,22 @@ class Basket extends ComponentBase
 
     public function onCheckout()
     {
+        $this->stripMissingItems();
+
+        if ($this->items_removed > 0) {
+
+            $removed_many = $this->items_removed > 1;
+
+            Flash::error(sprintf(
+                "%d %s couldn't be found and %s removed automatically. Please checkout again.",
+                $this->items_removed,
+                ($removed_many ? 'item' : 'items'),
+                ($removed_many ? 'were' : 'was')
+            ));
+
+            return Redirect::back();
+        }
+
         $order = new ShopOrder;
         $order->items = json_encode(Cart::content()->toArray());
         $order->total = Cart::total();
@@ -75,4 +92,21 @@ class Basket extends ComponentBase
 
         return Redirect::to('shop/checkout/payment');
     }
+
+    protected function stripMissingItems()
+    {
+        $this->items_removed = 0;
+
+        foreach (Cart::content() as $item)
+        {
+            if ( ! ShopProduct::find($item->id)) {
+                Cart::remove($item->rowid);
+
+                $this->items_removed++;
+            }
+        }
+
+        return;
+    }
+
 }
