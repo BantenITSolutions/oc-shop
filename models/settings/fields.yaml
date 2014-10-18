@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    stripe_active_keys:
+        label: Active Stripe
+        type: dropdown
+        options:
+            test: Development
+            live: Production
+tabs:
+    fields:
+        stripe_test_sec_key:
+            label: Secret Key
+            tab: Development
+        stripe_test_pub_key:
+            label: Publishable Key
+            tab: Development
+
+        stripe_live_sec_key:
+            label: Secret Key
+            tab: Production
+        stripe_live_pub_key:
+            label: Publishable Key
+            tab: Production

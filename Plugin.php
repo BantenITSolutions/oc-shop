@@ -99,4 +99,18 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label' => 'Stripe Settings',
+                'description' => 'Manage your Stripe API keys.',
+                'category' => 'Shop',
+                'icon' => 'icon-credit-card',
+                'class' => 'Dshoreman\Shop\Models\Settings',
+                'order' => 200,
+            ],
+        ];
+    }
+
 }
