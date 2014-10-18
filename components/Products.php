@@ -45,7 +45,10 @@ class Products extends ComponentBase
         $this->productPage = $this->page['productPage'] = $this->property('productPage');
 
         $this->category = $this->page['category'] = $this->loadCategory();
-        $this->products = $this->page['products'] = $this->listProducts();
+
+        if ($this->category) {
+            $this->products = $this->page['products'] = $this->listProducts();
+        }
     }
 
     public function loadCategory()
