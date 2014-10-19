@@ -5,7 +5,7 @@ use Cms\Classes\ComponentBase;
 use DShoreman\Shop\Models\Category as ShopCategory;
 use DShoreman\Shop\Models\Product as ShopProduct;
 
-class Products extends ComponentBase
+class Products extends Product
 {
 
     public function componentDetails()
@@ -18,18 +18,12 @@ class Products extends ComponentBase
 
     public function defineProperties()
     {
-        return [
+        return array_merge(parent::defineProperties(), [
             'categoryFilter' => [
                 'title'       => 'Category filter',
                 'description' => 'Enter a category slug or URL parameter to filter the posts by. Leave empty to show all posts.',
                 'type'        => 'string',
                 'default'     => ''
-            ],
-            'basketContainer' => [
-                'title' => 'Basket container element to update when adding products to cart',
-            ],
-            'addButtonText' => [
-                'title' => 'Buy button text',
             ],
             'productPage' => [
                 'title'       => 'Product Page',
@@ -38,44 +32,11 @@ class Products extends ComponentBase
                 'default'     => 'shop/product',
                 'group'       => 'Links',
             ],
-            'imageClass' => [
-                'title' => 'Image',
-                'group' => 'CSS Classes',
-            ],
-            'rowClass' => [
-                'title' => 'Row',
-                'group' => 'CSS Classes',
-                'default' => 'row',
-            ],
             'productColumnClass' => [
                 'title' => 'Product column',
                 'group' => 'CSS Classes',
             ],
-            'productContainerClass' => [
-                'title' => 'Product container',
-                'group' => 'CSS Classes',
-            ],
-            'detailContainerClass' => [
-                'title' => 'Detail container',
-                'group' => 'CSS Classes',
-            ],
-            'priceClass' => [
-                'title' => 'Price',
-                'group' => 'CSS Classes',
-            ],
-            'priceContainerClass' => [
-                'title' => 'Price container',
-                'group' => 'CSS Classes',
-            ],
-            'addButtonClass' => [
-                'title' => 'Buy button',
-                'group' => 'CSS Classes',
-            ],
-            'addButtonContainerClass' => [
-                'title' => 'Buy button container',
-                'group' => 'CSS Classes',
-            ],
-        ];
+        ]);
     }
 
     public function getProductPageOptions()
@@ -94,19 +55,12 @@ class Products extends ComponentBase
 
     public function prepareVars()
     {
+        parent::prepareVars();
+
         $this->productPage = $this->page['productPage'] = $this->property('productPage');
         $this->category = $this->page['category'] = $this->loadCategory();
 
         $this->productColumnClass = $this->page['productColumnClass'] = $this->property('productColumnClass');
-        $this->productContainerClass = $this->page['productContainerClass'] = $this->property('productContainerClass');
-        $this->imageClass = $this->page['imageClass'] = $this->property('imageClass');
-        $this->detailContainerClass = $this->page['detailContainerClass'] = $this->property('detailContainerClass');
-        $this->rowClass = $this->page['rowClass'] = $this->property('rowClass');
-        $this->priceContainerClass = $this->page['priceContainerClass'] = $this->property('priceContainerClass');
-        $this->addButtonContainerClass = $this->page['addButtonContainerClass'] = $this->property('addButtonContainerClass');
-        $this->addButtonClass = $this->page['addButtonClass'] = $this->property('addButtonClass');
-        $this->basketContainer = $this->page['basketContainer'] = $this->property('basketContainer');
-        $this->addButtonText = $this->page['addButtonText'] = $this->property('addButtonText');
     }
 
     public function loadCategory()

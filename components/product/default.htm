@@ -1,8 +1,8 @@
-<div class="row">
-    <div class="col-md-6">
-        <img class="img-rounded" src="http://placehold.it/500/500" />
+<div class="{{ productContainerClass }}">
+    <div class="{{ imageContainerClass }}">
+        <img class="{{ imageClass }}" alt="{{ product.title }}" src="http://placehold.it/500/500" />
     </div>
-    <div class="col-md-6">
+    <div class="{{ detailContainerClass }}">
 
         <h2>{{ product.title }}</h2>
         
@@ -10,27 +10,29 @@
 
         <form
             data-request="shopBasket::onAddProduct"
-            data-request-update="'shopBasket::default' : '#basket'"
+            {% if basketContainer %}
+            data-request-update="'shopBasket::default' : '{{ basketContainer }}'"
+            {% endif %}
             data-request-data="id: {{ product.id }}"
         >
-            <div class="row">
-                <div class="col-md-3">
-                    <p class="text-primary lead">
+            <div class="{{ rowClass }}">
+                <div class="{{ priceContainerClass }}">
+                    <p class="{{ priceClass }}">
                         <strong>&pound; {{ product.price }}</strong>
                     </p>
                 </div>
-                <div class="col-md-4">
-                    <label class="sr-only" for="qty">Quantity</label>
-                    <div class="input-group product-qty">
-                        <input type="number" class="form-control"
+                <div class="{{ qtyContainerClass }}">
+                    <label class="{{ qtyLabelClass }}" for="qty">Quantity</label>
+                    <div class="{{ qtyWrapperClass }}">
+                        <input type="number" class="{{ qtyClass }}"
                             name="quantity" placeholder="Qty"
                         >
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+            <div class="{{ rowClass }}">
+                <div class="{{ addButtonContainerClass }}">
+                    <button type="submit" class="{{ addButtonClass }}">{{ addButtonText }}</button>
                 </div>
             </div>
         </form>
