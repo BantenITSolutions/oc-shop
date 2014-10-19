@@ -4,8 +4,50 @@
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
-
 <?php if (!$this->fatalError): ?>
+
+    <div class="scoreboard">
+        <div data-controls="toolbar">
+
+            <div class="scoreboard-item title-value">
+                <h4>Order #</h4>
+                <p><?= $formModel->id ?></p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Customer</h4>
+                <p class="oc-icon-user">
+                    <?= $formModel->billing_name ?>
+                </p>
+                <p class="description">
+                    Email: <?= $formModel->email ?>
+                </p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Current Status</h4>
+                <?= $formModel->is_paid
+                 ? '<p style="color: #95b753;">Paid</p>'
+                 : '<p style="color: #cb2d00;">Pending</p>'
+                ?>
+                <p class="description"></p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Total Value</h4>
+                <p style="color: #95b753;">
+                    &pound;<?= $formModel->total ?>
+                </p>
+                <p class="description">
+                    for <?= $itemCount ?> items
+                </p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Date Placed</h4>
+                <p><?= $formModel->created_at ?></p>
+                <p class="description">
+                    Updated <?= $formModel->updated_at ?>
+                </p>
+            </div>
+        </div>
+    </div>
 
     <?= Form::open(['class'=>'layout-item stretch layout-column']) ?>
 

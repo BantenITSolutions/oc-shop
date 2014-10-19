@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Dshoreman\Shop\Models\Order;
 
 /**
  * Orders Back-end Controller
@@ -22,4 +23,19 @@ class Orders extends Controller
 
         BackendMenu::setContext('DShoreman.Shop', 'shop', 'orders');
     }
+
+    public function update($recordId, $context = null)
+    {
+        $this->vars['itemCount'] = 0;
+
+        $order = Order::find($recordId);
+
+        foreach (json_decode($order->items) as $item) {
+            $this->vars['itemCount'] += $item->qty;
+        }
+
+        return $this->asExtension('FormController')
+                    ->update($recordId, $context);
+    }
+
 }
