@@ -36,6 +36,31 @@ class Basket extends ComponentBase
                 'default'     => 'shop/product',
                 'group'       => 'Links',
             ],
+            'tableClass' => [
+                'title'       => 'Table',
+                'group'       => 'CSS Classes',
+            ],
+            'nameColClass' => [
+                'title'       => 'Name Column',
+                'group'       => 'CSS Classes',
+            ],
+            'qtyColClass' => [
+                'title'       => 'Quaantity Column',
+                'group'       => 'CSS Classes',
+            ],
+            'priceColClass' => [
+                'title'       => 'Price Column',
+                'group'       => 'CSS Classes',
+            ],
+            'subtotalColClass' => [
+                'title'       => 'Subtotal Column',
+                'group'       => 'CSS Classes',
+            ],
+            'totalLabelClass' => [
+                'title'       => 'Total Label',
+                'group'       => 'CSS Classes',
+                'description' => 'Class given to the cell containing the "Total" label.',
+            ],
         ];
     }
 
@@ -53,6 +78,13 @@ class Basket extends ComponentBase
     {
         $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
         $this->productPage = $this->page['productPage'] = $this->property('productPage');
+
+        $this->tableClass = $this->page['tableClass'] = $this->property('tableClass');
+        $this->nameColClass = $this->page['nameColClass'] = $this->property('nameColClass');
+        $this->qtyColClass = $this->page['qtyColClass'] = $this->property('qtyColClass');
+        $this->priceColClass = $this->page['priceColClass'] = $this->property('priceColClass');
+        $this->subtotalColClass = $this->page['subtotalColClass'] = $this->property('subtotalColClass');
+        $this->totalLabelClass = $this->page['totalLabelClass'] = $this->property('totalLabelClass');
 
         $this->basketItems = $this->page['basketItems'] = Cart::content();
         $this->basketCount = $this->page['basketCount'] = Cart::count();

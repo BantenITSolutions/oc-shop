@@ -1,12 +1,10 @@
-<p>You have {{ basketCount }} item(s) in your basket!</p>
-
-<table class="table">
+<table class="{{ tableClass }}">
     <thead>
         <tr>
-            <th>Product</th>
-            <th>Qty.</th>
-            <th>Price</th>
-            <th>Subtotal</th>
+            <th class="{{ nameColClass }}">Product</th>
+            <th class="{{ qtyColClass }}">Qty.</th>
+            <th class="{{ priceColClass }}">Price</th>
+            <th class="{{ subtotalColClass }}">Subtotal</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +16,11 @@
             <td>{{ item.subtotal }}</td>
         </tr>
         {% endfor %}
+        <tr>
+            <td colspan="3">
+                <strong class="{{ totalLabelClass }}">Total:</strong>
+            </td>
+            <td>&pound;{{ basketTotal }}</td>
+        </tr>
     </tbody>
 </table>
-
-<p><strong>Total:</strong> &pound;{{ basketTotal }}</p>
