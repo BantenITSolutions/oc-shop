@@ -95,6 +95,7 @@ class Product extends ComponentBase
         $this->addButtonText = $this->page['addButtonText'] = $this->property('addButtonText');
         $this->rowClass = $this->page['rowClass'] = $this->property('rowClass');
         $this->imageClass = $this->page['imageClass'] = $this->property('imageClass');
+        $this->imageContainerClass = $this->page['imageContainerClass'] = $this->property('imageContainerClass');
         $this->productContainerClass = $this->page['productContainerClass'] = $this->property('productContainerClass');
         $this->detailContainerClass = $this->page['detailContainerClass'] = $this->property('detailContainerClass');
         $this->qtyClass= $this->page['qtyClass'] = $this->property('qtyClass');
