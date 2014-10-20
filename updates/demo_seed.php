@@ -9,11 +9,11 @@ class DemoSeed extends Seeder {
     public function run()
     {
         $this->createCategories([[
-            'Books', 'books',
+            'Books', 'books', 1,
             'Here be some books up fer grabs!'
         ],
         [
-            'Games & Consoles', 'games-consoles',
+            'Games & Consoles', 'games-consoles', 2,
             'Bored? Twiddle yer thumbs on these new titles...'
         ]]);
 
@@ -46,7 +46,8 @@ class DemoSeed extends Seeder {
             $c = new Category;
             $c->title = $category[0];
             $c->slug = $category[1];
-            $c->description = $category[2];
+            $c->sort_order = $category[2];
+            $c->description = $category[3];
             $c->save();
         }
     }

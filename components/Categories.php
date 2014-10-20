@@ -74,7 +74,7 @@ class Categories extends ComponentBase
 
     public function listCategories()
     {
-        $categories = ShopCategory::all();
+        $categories = ShopCategory::orderBy('sort_order')->get();
 
         $categories->each(function($category)
         {

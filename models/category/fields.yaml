@@ -16,3 +16,7 @@ fields:
     description:
         label: Description
         type: textarea
+    sort_order:
+        label: Sort Order
+        required: true
+        type: number

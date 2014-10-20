@@ -12,6 +12,9 @@ columns:
     slug:
         label: Slug
         searchable: false
+    sort_order:
+        label: Sort Order
+        searchable: false
     description:
         label: Description
         searchable: false
