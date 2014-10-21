@@ -36,6 +36,16 @@ class Basket extends ComponentBase
                 'default'     => 'shop/product',
                 'group'       => 'Links',
             ],
+            'basketComponent' => [
+                'title'       => 'Basket Component',
+                'description' => 'Component to use when adding products to basket',
+                'default'     => 'shopBasket',
+            ],
+            'basketPartial' => [
+                'title'       => 'Basket Partial',
+                'description' => 'Partial to use when adding products to basket',
+                'default'     => 'shopBasket::default',
+            ],
             'tableClass' => [
                 'title'       => 'Table',
                 'group'       => 'CSS Classes',
@@ -74,21 +84,32 @@ class Basket extends ComponentBase
         $this->prepareVars();
     }
 
-    public function prepareVars()
+    public function onRender()
     {
-        $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
-        $this->productPage = $this->page['productPage'] = $this->property('productPage');
+        $this->prepareVars('render');
+    }
 
-        $this->tableClass = $this->page['tableClass'] = $this->property('tableClass');
-        $this->nameColClass = $this->page['nameColClass'] = $this->property('nameColClass');
-        $this->qtyColClass = $this->page['qtyColClass'] = $this->property('qtyColClass');
-        $this->priceColClass = $this->page['priceColClass'] = $this->property('priceColClass');
-        $this->subtotalColClass = $this->page['subtotalColClass'] = $this->property('subtotalColClass');
-        $this->totalLabelClass = $this->page['totalLabelClass'] = $this->property('totalLabelClass');
+    public function prepareVars($on = 'run')
+    {
+        if ($on == 'run') {
+            $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
+            $this->productPage = $this->page['productPage'] = $this->property('productPage');
 
-        $this->basketItems = $this->page['basketItems'] = Cart::content();
-        $this->basketCount = $this->page['basketCount'] = Cart::count();
-        $this->basketTotal = $this->page['basketTotal'] = Cart::total();
+            $this->basketComponent = $this->page['basketComponent'] = $this->property('basketComponent');;
+            $this->basketPartial = $this->page['basketPartial'] = $this->property('basketPartial');;
+            $this->basketItems = $this->page['basketItems'] = Cart::content();
+            $this->basketCount = $this->page['basketCount'] = Cart::count();
+            $this->basketTotal = $this->page['basketTotal'] = Cart::total();
+        }
+
+        if ($on == 'render') {
+            $this->tableClass = $this->page['tableClass'] = $this->propertyOrParam('tableClass');
+            $this->nameColClass = $this->page['nameColClass'] = $this->property('nameColClass');
+            $this->qtyColClass = $this->page['qtyColClass'] = $this->property('qtyColClass');
+            $this->priceColClass = $this->page['priceColClass'] = $this->property('priceColClass');
+            $this->subtotalColClass = $this->page['subtotalColClass'] = $this->property('subtotalColClass');
+            $this->totalLabelClass = $this->page['totalLabelClass'] = $this->property('totalLabelClass');
+        }
 
         if (Session::has('orderId')) {
             $this->orderId = $this->page['orderId'] = Session::get('orderId');

@@ -9,9 +9,9 @@
         {{ product.description|raw }}
 
         <form
-            data-request="shopBasket::onAddProduct"
+            data-request="{{ basketComponent }}::onAddProduct"
             {% if basketContainer %}
-            data-request-update="'shopBasket::default' : '{{ basketContainer }}'"
+            data-request-update="'{{ basketPartial }}' : '{{ basketContainer }}'"
             {% endif %}
             data-request-data="id: {{ product.id }}"
         >
