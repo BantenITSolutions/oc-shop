@@ -12,12 +12,12 @@
         </div>
         <div class="scoreboard-item title-value">
             <h4>Orders this Month</h4>
-            <p class="positive"><?= $ordersCount ?></p>
+            <p class="<?= $ordersCountClass ?>"><?= $ordersCount ?></p>
             <p class="description">previous: <?= $ordersCountLast ?></p>
         </div>
         <div class="scoreboard-item title-value">
             <h4>Sales</h4>
-            <p class="negative">&pound;<?= $ordersValue ?></p>
+            <p class="<?= $ordersValueClass ?>">&pound;<?= $ordersValue ?></p>
             <p class="description">previous: &pound;<?= $ordersValueLast ?></p>
         </div>
 
