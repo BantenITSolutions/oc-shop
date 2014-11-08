@@ -1,5 +1,6 @@
 <?php namespace DShoreman\Shop\Models;
 
+use Carbon\Carbon;
 use Model;
 
 /**
@@ -35,5 +36,18 @@ class Order extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function scopeCreatedThisMonth($query)
+    {
+        return $query->where('created_at', '>=', Carbon::now()->startOfMonth());
+    }
+
+    public function scopeCreatedLastMonth($query)
+    {
+        return $query->whereBetween('created_at', [
+            Carbon::now()->subMonth()->startOfMonth(),
+            Carbon::now()->subMonth()->endOfMonth()
+        ]);
+    }
 
 }
