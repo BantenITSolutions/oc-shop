@@ -1,6 +1,20 @@
-<div class="{{ productContainerClass }}">
-    <div class="{{ imageContainerClass }}">
-        <img class="{{ imageClass }}" alt="{{ product.title }}" src="http://placehold.it/500/500" />
+<div class="{{ rowClass }}">
+    <div class="{{ imagesetContainerClass }}">
+        <div class="{{ rowClass }}">
+            {% for image in product.images %}
+            <div class="{{ image.sort_order == '1' ? mainImageContainerClass : subImageContainerClass }}">
+                <a href="{{ image.getPath() }}" class="{{ imageLinkClass }}">
+                    <img class="{{ imageClass }}" alt="{{ product.title }}"
+                        {% if image.sort_order == '1' %}
+                         src="{{ product.getSquareThumb(mainImageSize, image) }}"
+                        {% else %}
+                         src="{{ product.getSquareThumb(subImageSize, image) }}"
+                        {% endif %}
+                    />
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="{{ detailContainerClass }}">
 

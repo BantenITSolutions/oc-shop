@@ -33,3 +33,10 @@ tabs:
             label: Description
             type: Backend\FormWidgets\RichEditor
             tab: Details
+
+        images:
+            type: Backend\FormWidgets\FileUpload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
+            tab: Images

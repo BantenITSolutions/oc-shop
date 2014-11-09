@@ -30,6 +30,12 @@ class Product extends ComponentBase
             'addButtonText' => [
                 'title' => 'Buy button text',
             ],
+            'mainImageSize' => [
+                'title' => 'Main Image Size',
+            ],
+            'subImageSize' => [
+                'title' => 'Secondary Image Size',
+            ],
             'rowClass' => [
                 'title' => 'Row',
                 'group' => 'CSS Classes',
@@ -39,8 +45,20 @@ class Product extends ComponentBase
                 'title' => 'Image',
                 'group' => 'CSS Classes',
             ],
-            'productContainerClass' => [
-                'title' => 'Product container',
+            'imageLinkClass' => [
+                'title' => 'Image Link',
+                'group' => 'CSS Classes',
+            ],
+            'mainImageContainerClass' => [
+                'title' => 'Main Image Container',
+                'group' => 'CSS Classes',
+            ],
+            'subImageContainerClass' => [
+                'title' => 'Secondary Image Containers',
+                'group' => 'CSS Classes',
+            ],
+            'imagesetContainerClass' => [
+                'title' => 'Imageset Container',
                 'group' => 'CSS Classes',
             ],
             'detailContainerClass' => [
@@ -95,8 +113,12 @@ class Product extends ComponentBase
         $this->addButtonText = $this->page['addButtonText'] = $this->property('addButtonText');
         $this->rowClass = $this->page['rowClass'] = $this->property('rowClass');
         $this->imageClass = $this->page['imageClass'] = $this->property('imageClass');
-        $this->imageContainerClass = $this->page['imageContainerClass'] = $this->property('imageContainerClass');
-        $this->productContainerClass = $this->page['productContainerClass'] = $this->property('productContainerClass');
+        $this->imageLinkClass = $this->page['imageLinkClass'] = $this->property('imageLinkClass');
+        $this->mainImageSize = $this->page['mainImageSize'] = $this->property('mainImageSize');
+        $this->mainImageContainerClass = $this->page['mainImageContainerClass'] = $this->property('mainImageContainerClass');
+        $this->subImageSize = $this->page['subImageSize'] = $this->property('subImageSize');
+        $this->subImageContainerClass = $this->page['subImageContainerClass'] = $this->property('subImageContainerClass');
+        $this->imagesetContainerClass = $this->page['imagesetContainerClass'] = $this->property('imagesetContainerClass');
         $this->detailContainerClass = $this->page['detailContainerClass'] = $this->property('detailContainerClass');
         $this->qtyClass= $this->page['qtyClass'] = $this->property('qtyClass');
         $this->qtyWrapperClass= $this->page['qtyWrapperClass'] = $this->property('qtyWrapperClass');
@@ -112,7 +134,10 @@ class Product extends ComponentBase
     {
         $productId = $this->propertyOrParam('idParam');
 
-        return ShopProduct::whereSlug($productId)->first();
+        return ShopProduct::whereSlug($productId)->with(['images' => function($query)
+        {
+            $query->orderBy('sort_order', 'asc');
+        }])->first();
     }
 
 }

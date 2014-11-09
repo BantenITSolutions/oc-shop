@@ -36,11 +36,18 @@ class Product extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
-    public $attachMany = [];
+    public $attachMany = [
+        'images' => ['System\Models\File']
+    ];
 
     public function getCategoryIdOptions($keyValue = null)
     {
         return Category::lists('title', 'id');
+    }
+
+    public function getSquareThumb($size, $image)
+    {
+        return $image->getThumb($size, $size, ['mode' => 'crop']);
     }
 
     public function setUrl($pageName, $controller)
