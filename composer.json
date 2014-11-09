@@ -1,8 +1,8 @@
 {
     "name": "dshoreman/shop",
-    "description": "",
+    "description": "Standalone eCommerce plugin for October CMS",
     "homepage": "http://dsdev.io/",
-    "keywords": [],
+    "keywords": ['october', 'ecommerce', 'shop', 'stripe', 'product', 'plugin'],
     "authors": [
         {
             "name": "Dave Shoreman",
