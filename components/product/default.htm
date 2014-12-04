@@ -2,14 +2,18 @@
     <div class="{{ imagesetContainerClass }}">
         <div class="{{ rowClass }}">
             {% for image in product.images %}
-            <div class="{{ image.sort_order == '1' ? mainImageContainerClass : subImageContainerClass }}">
+            {% if image.sort_order == '1' %}
+                {% set imageContainerClass = mainImageContainerClass %}
+                {% set imageSize = mainImageSize %}
+            {% else %}
+                {% set imageContainerClass = subImageContainerClass %}
+                {% set imageSize = subImageSize %}
+            {% endif %}
+
+            <div class="{{ imageContainerClass }}">
                 <a href="{{ image.getPath() }}" class="{{ imageLinkClass }}">
                     <img class="{{ imageClass }}" alt="{{ product.title }}"
-                        {% if image.sort_order == '1' %}
-                         src="{{ product.getSquareThumb(mainImageSize, image) }}"
-                        {% else %}
-                         src="{{ product.getSquareThumb(subImageSize, image) }}"
-                        {% endif %}
+                         src="{{ product.getSquareThumb(imageSize, image) }}"
                     />
                 </a>
             </div>

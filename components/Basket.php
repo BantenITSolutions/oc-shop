@@ -92,28 +92,43 @@ class Basket extends ComponentBase
     public function prepareVars($on = 'run')
     {
         if ($on == 'run') {
-            $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
-            $this->productPage = $this->page['productPage'] = $this->property('productPage');
+            $this->registerBasketInfo();
+            $this->registerPages();
 
             $this->basketComponent = $this->page['basketComponent'] = $this->property('basketComponent');;
             $this->basketPartial = $this->page['basketPartial'] = $this->property('basketPartial');;
-            $this->basketItems = $this->page['basketItems'] = Cart::content();
-            $this->basketCount = $this->page['basketCount'] = Cart::count();
-            $this->basketTotal = $this->page['basketTotal'] = Cart::total();
         }
 
         if ($on == 'render') {
-            $this->tableClass = $this->page['tableClass'] = $this->propertyOrParam('tableClass');
-            $this->nameColClass = $this->page['nameColClass'] = $this->property('nameColClass');
-            $this->qtyColClass = $this->page['qtyColClass'] = $this->property('qtyColClass');
-            $this->priceColClass = $this->page['priceColClass'] = $this->property('priceColClass');
-            $this->subtotalColClass = $this->page['subtotalColClass'] = $this->property('subtotalColClass');
-            $this->totalLabelClass = $this->page['totalLabelClass'] = $this->property('totalLabelClass');
+            $this->registerClasses();
         }
 
         if (Session::has('orderId')) {
             $this->orderId = $this->page['orderId'] = Session::get('orderId');
         }
+    }
+
+    public function registerBasketInfo()
+    {
+        $this->basketCount = $this->page['basketCount'] = Cart::count();
+        $this->basketItems = $this->page['basketItems'] = Cart::content();
+        $this->basketTotal = $this->page['basketTotal'] = Cart::total();
+    }
+
+    public function registerPages()
+    {
+        $this->paymentPage = $this->page['paymentPage'] = $this->property('paymentPage');
+        $this->productPage = $this->page['productPage'] = $this->property('productPage');
+    }
+
+    public function registerClasses()
+    {
+        $this->tableClass = $this->page['tableClass'] = $this->propertyOrParam('tableClass');
+        $this->nameColClass = $this->page['nameColClass'] = $this->property('nameColClass');
+        $this->qtyColClass = $this->page['qtyColClass'] = $this->property('qtyColClass');
+        $this->priceColClass = $this->page['priceColClass'] = $this->property('priceColClass');
+        $this->subtotalColClass = $this->page['subtotalColClass'] = $this->property('subtotalColClass');
+        $this->totalLabelClass = $this->page['totalLabelClass'] = $this->property('totalLabelClass');
     }
 
     public function onAddProduct()
@@ -125,9 +140,19 @@ class Basket extends ComponentBase
 
         Cart::add($id, $product->title, $quantity, $product->price);
 
-        $this->page['basketCount'] = Cart::count();
-        $this->page['basketItems'] = Cart::content();
-        $this->page['basketTotal'] = Cart::total();
+        $this->registerBasketInfo();
+    }
+
+    public function onRemoveProduct()
+    {
+        Cart::remove(post('row_id'));
+
+        $this->registerBasketInfo();
+
+        return [
+            'total' => $this->basketTotal,
+            'count' => $this->basketCount,
+        ];
     }
 
     public function onCheckout()

@@ -1,6 +1,7 @@
 <table class="{{ tableClass }}">
     <thead>
         <tr>
+            <th class="col-xs-1">&nbsp;</th>
             <th class="{{ nameColClass }}">Product</th>
             <th class="{{ qtyColClass }}">Qty.</th>
             <th class="{{ priceColClass }}">Price</th>
@@ -9,7 +10,15 @@
     </thead>
     <tbody>
         {% for item in basketItems %}
-        <tr>
+        <tr class="ocshop-row-{{ item.rowid }}">
+            <td>
+                <button type="submit" class="btn btn-xs btn-default"
+                        data-request="{{ __SELF__ }}::onRemoveProduct"
+                        data-request-data="row_id: '{{ item.rowid }}'"
+                        data-request-success="$('.ocshop-row-{{ item.rowid }}').remove(); $('.ocshop-total').text(data.total); $('.ocshop-count').text(data.count);">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
             <td>{{ item.name }}</td>
             <td>{{ item.qty }}</td>
             <td>{{ item.price }}</td>
@@ -17,10 +26,10 @@
         </tr>
         {% endfor %}
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 <strong class="{{ totalLabelClass }}">Total:</strong>
             </td>
-            <td>&pound;{{ basketTotal }}</td>
+            <td>&pound;<span class="ocshop-total">{{ basketTotal }}</span></td>
         </tr>
     </tbody>
 </table>
