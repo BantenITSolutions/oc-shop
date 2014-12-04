@@ -1,0 +1,96 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('dshoreman/shop/orders') ?>">Orders</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+<?php if (!$this->fatalError): ?>
+
+    <div class="scoreboard">
+        <div data-controls="toolbar">
+
+            <div class="scoreboard-item title-value">
+                <h4>Order #</h4>
+                <p><?= $formModel->id ?></p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Customer</h4>
+                <p class="oc-icon-user">
+                    <?= $formModel->billing_name ?>
+                </p>
+                <p class="description">
+                    Email: <?= $formModel->email ?>
+                </p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Current Status</h4>
+                <?= $formModel->is_paid
+                 ? '<p style="color: #95b753;">Paid</p>'
+                 : '<p style="color: #cb2d00;">Pending</p>'
+                ?>
+                <p class="description"></p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Total Value</h4>
+                <p style="color: #95b753;">
+                    &pound;<?= $formModel->total ?>
+                </p>
+                <p class="description">
+                    for <?= $itemCount ?> items
+                </p>
+            </div>
+            <div class="scoreboard-item title-value">
+                <h4>Date Placed</h4>
+                <p><?= $formModel->created_at ?></p>
+                <p class="description">
+                    Updated <?= $formModel->updated_at ?>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <?= Form::open(['class'=>'layout-item stretch layout-column']) ?>
+
+        <?= $this->formRender() ?>
+
+        <div class="form-buttons layout-item fix">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Order..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Order..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Order..."
+                    data-request-confirm="Do you really want to delete this order?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('dshoreman/shop/orders') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('dshoreman/shop/orders') ?>" class="btn btn-default">Return to orders list</a></p>
+
+<?php endif ?>

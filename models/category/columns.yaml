@@ -1,0 +1,21 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    title:
+        label: Title
+        searchable: true
+    slug:
+        label: Slug
+        searchable: false
+    sort_order:
+        label: Sort Order
+        searchable: false
+    description:
+        label: Description
+        searchable: false
+        invisible: true

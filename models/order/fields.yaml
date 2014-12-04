@@ -1,0 +1,50 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+tabs:
+    fields:
+        items:
+            label:
+            tab: Products
+            type: itemgrid
+
+        billing_name:
+            label: Name
+            tab: Payment Address
+        billing_street:
+            label: Address
+            tab: Payment Address
+        billing_town:
+            label: Town
+            tab: Payment Address
+        billing_county:
+            label: County
+            tab: Payment Address
+        billing_postcode:
+            label: Post Code
+            tab: Payment Address
+        billing_country:
+            label: Country
+            tab: Payment Address
+
+        shipping_name:
+            label: Name
+            tab: Postage Address
+        shipping_street:
+            label: Address
+            tab: Postage Address
+        shipping_town:
+            label: Town
+            tab: Postage Address
+        shipping_county:
+            label: County
+            tab: Postage Address
+        shipping_postcode:
+            label: Post Code
+            tab: Postage Address
+        shipping_country:
+            label: Country
+            tab: Postage Address

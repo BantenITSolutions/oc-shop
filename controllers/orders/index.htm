@@ -1,0 +1,26 @@
+<div class="scoreboard">
+    <div data-control="toolbar">
+        <div class="scoreboard-item control-chart" data-control="chart-pie">
+            <ul>
+                <li data-color="#95b753">Paid <span><?= $ordersPaid ?></span></li>
+                <li data-color="#e5a91a">Pending <span><?= $ordersPending ?></span></li>
+            </ul>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>All Orders</h4>
+            <p><?= $ordersTotal ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Orders this Month</h4>
+            <p class="<?= $ordersCountClass ?>"><?= $ordersCount ?></p>
+            <p class="description">previous: <?= $ordersCountLast ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4>Sales</h4>
+            <p class="<?= $ordersValueClass ?>">&pound;<?= $ordersValue ?></p>
+            <p class="description">previous: &pound;<?= $ordersValueLast ?></p>
+        </div>
+
+    </div>
+</div>
+<?= $this->listRender() ?>

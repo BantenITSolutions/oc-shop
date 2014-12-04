@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Product
+
+# Model Form Field configuration
+form: $/dshoreman/shop/models/product/fields.yaml
+
+# Model Class name
+modelClass: DShoreman\Shop\Models\Product
+
+# Default redirect location
+defaultRedirect: dshoreman/shop/products
+
+# Create page
+create:
+    title: Create Product
+    redirect: dshoreman/shop/products/update/:id
+    redirectClose: dshoreman/shop/products
+
+# Update page
+update:
+    title: Edit Product
+    redirect: dshoreman/shop/products
+    redirectClose: dshoreman/shop/products
+
+# Preview page
+preview:
+    title: Preview Product

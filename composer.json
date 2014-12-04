@@ -1,0 +1,17 @@
+{
+    "name": "dshoreman/shop",
+    "description": "Standalone eCommerce plugin for October CMS",
+    "homepage": "http://dsdev.io/",
+    "keywords": ['october', 'ecommerce', 'shop', 'stripe', 'product', 'plugin'],
+    "authors": [
+        {
+            "name": "Dave Shoreman",
+            "email": "code@dsdev.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "gloudemans/shoppingcart": "~1.2",
+        "stripe/stripe-php": "dev-master"
+    }
+}

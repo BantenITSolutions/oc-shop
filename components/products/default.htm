@@ -1,0 +1,7 @@
+<div class="{{ rowClass }}">
+    {% for product in products %}
+        <div class="{{ productColumnClass }}">
+            {% partial 'shopProducts::product' product=product %}
+        </div>
+    {% endfor %}
+</div>
