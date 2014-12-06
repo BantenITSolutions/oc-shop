@@ -42,7 +42,7 @@
                 <div class="{{ qtyContainerClass }}">
                     <label class="{{ qtyLabelClass }}" for="qty">Quantity</label>
                     <div class="{{ qtyWrapperClass }}">
-                        <input type="number" class="{{ qtyClass }}"
+                        <input min="1" max="9999" value="1" type="number" class="{{ qtyClass }}"
                             name="quantity" placeholder="Qty"
                         >
                     </div>
