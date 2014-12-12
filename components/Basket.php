@@ -121,8 +121,17 @@ class Basket extends ComponentBase
 
     public function registerBasketInfo()
     {
+        // Yet another damn hack, because row.product.foo does not work inside twig,
+        // which means we can't just take advantage of the Cart class' model association.
+        // That would of course be the obvious solution, but hey. Twig's a bitch apparently.
+        $content = Cart::content();
+        $content->each(function($row)
+        {
+            $row->slug = $row->product->slug;
+        });
+
         $this->basketCount = $this->page['basketCount'] = Cart::count();
-        $this->basketItems = $this->page['basketItems'] = Cart::content();
+        $this->basketItems = $this->page['basketItems'] = $content;
         $this->basketTotal = $this->page['basketTotal'] = Cart::total();
     }
 
@@ -149,7 +158,7 @@ class Basket extends ComponentBase
 
         $product = ShopProduct::find($id);
 
-        Cart::add($id, $product->title, $quantity, $product->price);
+        Cart::associate('Product', 'DShoreman\Shop\Models')->add($id, $product->title, $quantity, $product->price);
 
         $this->registerBasketInfo();
     }
