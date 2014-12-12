@@ -1,5 +1,18 @@
 <div class="{{ mainImageContainerClass }}">
-    <img class="{{ imageClass }}" alt="{{ product.title }}" src="http://placehold.it/250/250" />
+    {% if product.images|length == 0 %}
+        <img class="{{ imageClass }}" alt="{{ product.title }}"
+             src="http://placehold.it/179/179" />
+    {% else %}
+        <!-- HERE BE DRAGONS! -------------------------------------------------->
+        <!-- This is a dirty hack. There is really only one image, but with   -->
+        <!-- $product->image = $product->images->first() in the model, we get -->
+        <!-- a "Call to member function on non-object" error, despite it      -->
+        <!-- being passed a File object.          Yeah... Don't ask. No idea. -->
+        {% for image in product.images %}
+        <img class="{{ imageClass }}" alt="{{ product.title }}"
+             src="{{ product.getSquareThumb(179, image) }}" />
+        {% endfor %}
+    {% endif %}
 
     <div class="{{ detailContainerClass }}">
         <a href="{{ product.url }}">

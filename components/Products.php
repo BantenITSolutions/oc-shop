@@ -76,7 +76,11 @@ class Products extends Product
 
     public function listProducts()
     {
-        $products = ShopProduct::whereCategoryId($this->category->id)->get();
+        $products = ShopProduct::whereCategoryId($this->category->id)
+                    ->with(['images' => function($query)
+                    {
+                        $query->orderBy('sort_order', 'asc')->first();
+                    }])->get();
 
         $products->each(function($product)
         {
