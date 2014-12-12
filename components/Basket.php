@@ -26,6 +26,7 @@ class Basket extends ComponentBase
             'paymentPage' => [
                 'title'       => 'Checkout Page',
                 'description' => 'Name of the page to redirect to when a user clicks Proceed to Checkout.',
+                'type'        => 'dropdown',
                 'default'     => 'checkout/payment',
                 'group'       => 'Links',
             ],
@@ -74,7 +75,17 @@ class Basket extends ComponentBase
         ];
     }
 
+    public function getPaymentPageOptions()
+    {
+        return $this->getPagesDropdown();
+    }
+
     public function getProductPageOptions()
+    {
+        return $this->getPagesDropdown();
+    }
+
+    public function getPagesDropdown()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
