@@ -22,7 +22,7 @@ class ItemGrid extends FormWidgetBase {
 
     public function prepareVars()
     {
-        $this->vars['items'] = json_decode($this->formField->value);
+        $this->vars['items'] = $this->formField->value;
     }
 
 }

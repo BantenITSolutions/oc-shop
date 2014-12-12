@@ -60,7 +60,7 @@ class Orders extends Controller
 
         $order = Order::find($recordId);
 
-        foreach (json_decode($order->items) as $item) {
+        foreach ($order->items as $item) {
             $this->vars['itemCount'] += $item->qty;
         }
 
