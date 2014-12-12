@@ -10,10 +10,14 @@ Route::group(['prefix' => 'shop'], function()
         $token = post('stripeToken');
         $orderId = Session::get('orderId');
 
-        if (!$order = ShopOrder::find($orderId)) {
+        if (is_null($orderId) || !$order = ShopOrder::find($orderId)) {
 
-            // Todo: Add some flash data and utilise the ajax stuff instead of redirect
-            return Redirect::to('shop/checkout/payment/'.$orderId);
+            // If order ID is null, the user probably went straight to the payment page without
+            // the basket's onCheckout method being fired, thus the order does not exist.
+            Flash::error("Something went wrong when creating your order, please checkout again."
+                         . " If the problem persists, contact the site administrator.");
+
+            return Redirect::to('basket');
         }
 
         $order->email = Input::get('stripeEmail');
