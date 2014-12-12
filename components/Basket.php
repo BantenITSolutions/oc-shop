@@ -27,14 +27,14 @@ class Basket extends ComponentBase
                 'title'       => 'Checkout Page',
                 'description' => 'Name of the page to redirect to when a user clicks Proceed to Checkout.',
                 'type'        => 'dropdown',
-                'default'     => 'checkout/payment',
+                'default'     => 'payment',
                 'group'       => 'Links',
             ],
             'productPage' => [
                 'title'       => 'Product Page',
                 'description' => 'Name of the product page for the product titles. This property is used by the default component partial.',
                 'type'        => 'dropdown',
-                'default'     => 'shop/product',
+                'default'     => 'product',
                 'group'       => 'Links',
             ],
             'basketComponent' => [
