@@ -50,4 +50,11 @@ class Order extends Model
         ]);
     }
 
+    public function getItemsAttribute($value)
+    {
+        $value = (array) json_decode($value);
+
+        return $value;
+    }
+
 }

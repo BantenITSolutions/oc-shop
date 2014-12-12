@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-6">
+        <address>
+            <strong>{{ order.billing_name }}</strong><br>
+            {{ order.billing_street }}<br>
+            {{ order.billing_town }}<br>
+            {{ order.billing_county }}<br>
+            {{ order.billing_postcode }}<br>
+            {{ order.billing_country }}
+        </address>
+    </div>
+    <div class="col-sm-6">
+        <address>
+            <strong>{{ order.shipping_name }}</strong><br>
+            {{ order.shipping_street }}<br>
+            {{ order.shipping_town }}<br>
+            {{ order.shipping_county }}<br>
+            {{ order.shipping_postcode }}<br>
+            {{ order.shipping_country }}
+        </address>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in order.items %}
+        <tr>
+            <td class="col-xs-9">{{ item.name }}</td>
+            <td class="col-xs-1">&pound;{{ item.price }}</td>
+            <td class="col-xs-1">{{ item.qty }}</td>
+            <td class="col-xs-1">&pound;{{ item.subtotal }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <span class="pull-right"><strong>Total:</strong></span>
+            </td>
+            <td>&pound;{{ order.total }}</td>
+        </tr>
+    </tfoot>
+</table>

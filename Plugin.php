@@ -41,6 +41,7 @@ class Plugin extends PluginBase
         return [
             'DShoreman\Shop\Components\Basket' => 'shopBasket',
             'DShoreman\Shop\Components\Categories' => 'shopCategories',
+            'DShoreman\Shop\Components\Order' => 'shopOrder',
             'DShoreman\Shop\Components\Product' => 'shopProduct',
             'DShoreman\Shop\Components\Products' => 'shopProducts',
         ];
