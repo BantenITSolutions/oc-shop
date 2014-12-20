@@ -6,52 +6,56 @@
 <?php Block::endPut() ?>
 <?php if (!$this->fatalError): ?>
 
-    <div class="scoreboard">
-        <div data-controls="toolbar">
 
-            <div class="scoreboard-item title-value">
-                <h4>Order #</h4>
-                <p><?= $formModel->id ?></p>
+    <?php Block::put('form-contents') ?>
+    <div class="layout">
+        <div class="layout-row">
+
+            <div class="scoreboard">
+                <div data-controls="toolbar">
+                    <div class="scoreboard-item title-value">
+                        <h4>Order #</h4>
+                        <p><?= $formModel->id ?></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Customer</h4>
+                        <p class="oc-icon-user">
+                            <?= $formModel->billing_name ?>
+                        </p>
+                        <p class="description">
+                            Email: <?= $formModel->email ?>
+                        </p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Current Status</h4>
+                        <?= $formModel->is_paid
+                         ? '<p style="color: #95b753;">Paid</p>'
+                         : '<p style="color: #cb2d00;">Pending</p>'
+                        ?>
+                        <p class="description"></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Total Value</h4>
+                        <p style="color: #95b753;">
+                            &pound;<?= $formModel->total ?>
+                        </p>
+                        <p class="description">
+                            for <?= $itemCount ?> items
+                        </p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Date Placed</h4>
+                        <p><?= $formModel->created_at->format("H:i d/m/Y") ?></p>
+                        <p class="description">
+                            Updated <?= $formModel->updated_at->format("H:i d/m/Y") ?>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="scoreboard-item title-value">
-                <h4>Customer</h4>
-                <p class="oc-icon-user">
-                    <?= $formModel->billing_name ?>
-                </p>
-                <p class="description">
-                    Email: <?= $formModel->email ?>
-                </p>
-            </div>
-            <div class="scoreboard-item title-value">
-                <h4>Current Status</h4>
-                <?= $formModel->is_paid
-                 ? '<p style="color: #95b753;">Paid</p>'
-                 : '<p style="color: #cb2d00;">Pending</p>'
-                ?>
-                <p class="description"></p>
-            </div>
-            <div class="scoreboard-item title-value">
-                <h4>Total Value</h4>
-                <p style="color: #95b753;">
-                    &pound;<?= $formModel->total ?>
-                </p>
-                <p class="description">
-                    for <?= $itemCount ?> items
-                </p>
-            </div>
-            <div class="scoreboard-item title-value">
-                <h4>Date Placed</h4>
-                <p><?= $formModel->created_at ?></p>
-                <p class="description">
-                    Updated <?= $formModel->updated_at ?>
-                </p>
-            </div>
+
+            <?= $this->formRenderPrimaryTabs() ?>
+
         </div>
-    </div>
-
-    <?= Form::open(['class'=>'layout-item stretch layout-column']) ?>
-
-        <?= $this->formRender() ?>
 
         <div class="form-buttons layout-item fix">
             <div class="loading-indicator-container">
@@ -85,12 +89,42 @@
                 </span>
             </div>
         </div>
+    </div>
+    <?php Block::endPut() ?>
 
-    <?= Form::close() ?>
+    <?php Block::put('form-sidebar') ?>
+        <div class="panel panel-default">
+            <label>Biling Address</label>
+            <address>
+                <?= $formModel->billing_name ?><br>
+                <?= $formModel->billing_street ?><br>
+                <?= $formModel->billing_town ?><br>
+                <?= $formModel->billing_county ?><br>
+                <?= $formModel->billing_postcode ?><br>
+                <?= $formModel->billing_country ?><br>
+            </address>
+        </div>
+        <div class="panel panel-default">
+            <label>Shipping Address</label>
+            <address>
+                <?= $formModel->shipping_name ?><br>
+                <?= $formModel->shipping_street ?><br>
+                <?= $formModel->shipping_town ?><br>
+                <?= $formModel->shipping_county ?><br>
+                <?= $formModel->shipping_postcode ?><br>
+            </address>
+        </div>
+    <?php Block::endPut() ?>
+
+    <?php Block::put('body') ?>
+        <?= Form::open(['class' => 'layout-stretch']) ?>
+            <?= $this->makeLayout('form-with-sidebar') ?>
+        <?= Form::close() ?>
+    <?php Block::endPut() ?>
 
 <?php else: ?>
 
+
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
     <p><a href="<?= Backend::url('dshoreman/shop/orders') ?>" class="btn btn-default">Return to orders list</a></p>
-
 <?php endif ?>

@@ -56,6 +56,8 @@ class Orders extends Controller
 
     public function update($recordId, $context = null)
     {
+        $this->bodyClass = 'compact-container';
+
         $this->vars['itemCount'] = 0;
 
         $order = Order::find($recordId);
