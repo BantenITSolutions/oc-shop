@@ -1,5 +1,6 @@
 <?php namespace Dshoreman\Shop\FormWidgets;
 
+use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
 use Backend\Widgets\Grid;
 
@@ -23,6 +24,11 @@ class ItemGrid extends FormWidgetBase {
     public function prepareVars()
     {
         $this->vars['items'] = $this->formField->value;
+    }
+
+    public function getSaveData($value)
+    {
+        return FormField::NO_SAVE_DATA;
     }
 
 }
