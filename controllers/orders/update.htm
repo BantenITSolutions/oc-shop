@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <?= $this->formRenderPrimaryTabs() ?>
+            <div class="hide-tabs"><?= $this->formRenderPrimaryTabs() ?></div>
 
         </div>
 
@@ -89,31 +89,145 @@
                 </span>
             </div>
         </div>
+        <div style="height: 300px;"></div>
     </div>
     <?php Block::endPut() ?>
 
     <?php Block::put('form-sidebar') ?>
         <div class="panel panel-default">
-            <label>Biling Address</label>
-            <address>
-                <?= $formModel->billing_name ?><br>
-                <?= $formModel->billing_street ?><br>
-                <?= $formModel->billing_town ?><br>
-                <?= $formModel->billing_county ?><br>
-                <?= $formModel->billing_postcode ?><br>
-                <?= $formModel->billing_country ?><br>
+            <h4>Billing Address
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-warning btn-xs addr-modal"
+                            data-toggle="modal"
+                            data-target="#addrEditModal"
+                            data-addr_type="billing">
+                        <i class="oc-icon oc-icon-pencil"></i> Edit
+                    </button>
+                </div>
+            </h4>
+            <address data-type="billing">
+                <span data-line="name"><?= $formModel->billing_name ?></span><br>
+                <span data-line="street"><?= $formModel->billing_street ?></span><br>
+                <span data-line="town"><?= $formModel->billing_town ?></span><br>
+                <span data-line="county"><?= $formModel->billing_county ?></span><br>
+                <span data-line="postcode"><?= $formModel->billing_postcode ?></span><br>
+                <span data-line="country"><?= $formModel->billing_country ?></span><br>
             </address>
         </div>
         <div class="panel panel-default">
-            <label>Shipping Address</label>
-            <address>
-                <?= $formModel->shipping_name ?><br>
-                <?= $formModel->shipping_street ?><br>
-                <?= $formModel->shipping_town ?><br>
-                <?= $formModel->shipping_county ?><br>
-                <?= $formModel->shipping_postcode ?><br>
+            <h4>Shipping Address
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-warning btn-xs addr-modal"
+                            data-toggle="modal"
+                            data-target="#addrEditModal"
+                            data-addr_type="shipping">
+                        <i class="oc-icon oc-icon-pencil"></i> Edit
+                    </button>
+                </div>
+            </h4>
+            <address data-type="shipping">
+                <span data-line="name"><?= $formModel->shipping_name ?></span><br>
+                <span data-line="street"><?= $formModel->shipping_street ?></span><br>
+                <span data-line="town"><?= $formModel->shipping_town ?></span><br>
+                <span data-line="county"><?= $formModel->shipping_county ?></span><br>
+                <span data-line="postcode"><?= $formModel->shipping_postcode ?></span><br>
+                <span data-line="country"><?= $formModel->shiping_country ?></span><br>
             </address>
         </div>
+
+        <div class="modal fade" id="addrEditModal" tabindex="-1" role="dialog" aria-labelledby="addrEditModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="addrEditModalLabel">Editing Address</h4>
+                    </div>
+                    <div class="modal-body" id="addrModalForm">
+                        <div class="form-group">
+                            <label for="addr-name" class="control-label">Full Name:</label>
+                            <input type="text" class="form-control" id="addr-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-street" class="control-label">Address Line 1:</label>
+                            <input type="text" class="form-control" id="addr-street">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-street" class="control-label">Town:</label>
+                            <input type="text" class="form-control" id="addr-town">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-county" class="control-label">County:</label>
+                            <input type="text" class="form-control" id="addr-county">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-postcode" class="control-label">Post Code:</label>
+                            <input type="text" class="form-control" id="addr-postcode">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-country" class="control-label">Country:</label>
+                            <input type="text" class="form-control" id="addr-country">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveAddrBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(window).ready(function() {
+
+                $('#addrEditModal').on('show.bs.modal', function (e) {
+                    var button = $(e.relatedTarget),
+                        addrtype = button.data('addr_type'),
+                        addr = $('address[data-type="'+addrtype+'"]'),
+                        modal = $(this);
+
+                    modal.find('.modal-title').text("Updating address '"+addrtype+"'");
+                    setModalClass(addrtype);
+
+                    $('#addr-name').val(addr.find('span[data-line="name"]').text());
+                    $('#addr-street').val(addr.find('span[data-line="street"]').text());
+                    $('#addr-town').val(addr.find('span[data-line="town"]').text());
+                    $('#addr-county').val(addr.find('span[data-line="county"]').text());
+                    $('#addr-postcode').val(addr.find('span[data-line="postcode"]').text());
+                    $('#addr-country').val(addr.find('span[data-line="country"]').text());
+                });
+
+                function setModalClass(type) {
+                    $('#addrModalForm').removeClass('billing');
+                    $('#addrModalForm').removeClass('shipping');
+
+                    $('#addrModalForm').addClass(type);
+                }
+
+                $('#saveAddrBtn').on('click', function() {
+                    var a = new Object(),
+                        at= $('#addrModalForm').hasClass('billing') ? 'billing' : 'shipping';
+
+                    a.name = $('#addr-name').val();
+                    a.street = $('#addr-street').val();
+                    a.town = $('#addr-town').val();
+                    a.county = $('#addr-county').val();
+                    a.postcode = $('#addr-postcode').val();
+                    a.country = $('#addr-country').val();
+
+                    $.each(a, function(line, val) {
+                        addr = $('address[data-type="'+at+'"]');
+                        addr.find('span[data-line="'+line+'"]').text(val);
+
+                        $('#Form-field-Order-'+at+'_'+line).val(val);
+                    });
+
+                    $('#addrEditModal').modal('hide');
+                });
+
+            });
+        </script>
     <?php Block::endPut() ?>
 
     <?php Block::put('body') ?>
